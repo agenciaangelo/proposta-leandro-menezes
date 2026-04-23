@@ -292,7 +292,7 @@
   }
   .escopo-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
   }
   .escopo-item {
@@ -305,13 +305,6 @@
   .escopo-item:hover {
     border-color: rgba(242,101,34,0.25);
     transform: translateY(-4px);
-  }
-  .escopo-item:last-child {
-    grid-column: span 3;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 32px;
-    align-items: center;
   }
   .item-num {
     font-family: 'Syne', sans-serif;
@@ -624,7 +617,6 @@
     .hero-stats { grid-template-columns: 1fr 1fr; }
     .hero-stats .stat-card:first-child { grid-column: span 2; }
     .escopo-grid { grid-template-columns: 1fr 1fr; }
-    .escopo-item:last-child { grid-column: span 2; display: block; }
     .steps-grid { grid-template-columns: 1fr; }
     .plans-grid { grid-template-columns: 1fr; }
     #hero { padding-top: 120px; }
@@ -708,9 +700,6 @@
         <div class="section-eyebrow reveal">Escopo do Serviço</div>
         <h2 class="section-title reveal reveal-delay-1">O que está <span>incluso</span><br>em cada cliente</h2>
       </div>
-      <p class="section-body reveal reveal-delay-2" style="align-self:end;">
-        Um serviço completo de gestão de mídias sociais, entregue de forma estruturada — pronto para ser repassado ao cliente final com a sua marca.
-      </p>
     </div>
     <div class="escopo-grid">
       <div class="escopo-item reveal">
