@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial – Agência Ângelo</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #F26522;
+    --orange-dim: rgba(242,101,34,0.12);
+    --dark: #0A0812;
+    --dark2: #120F20;
+    --dark3: #1C1830;
+    --white: #FFFFFF;
+    --gray: #7E7A94;
+    --gray-light: #B0ACBF;
+    --light-bg: #F7F5F2;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10,8,18,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange); }
+
+  .nav-cta {
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+    overflow: hidden;
+  }
+  .hero-glow-1 {
+    position: absolute;
+    right: -200px; top: -200px;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(242,101,34,0.20) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-glow-2 {
+    position: absolute;
+    left: -100px; bottom: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(242,101,34,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(242,101,34,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 800;
+    line-height: 1.0;
+    margin-bottom: 28px;
+  }
+  .hero-title span { color: var(--orange); }
+  .hero-desc {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--gray-light);
+    max-width: 480px;
+    margin-bottom: 44px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+  .btn-ghost {
+    color: var(--gray-light);
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); }
+  .btn-ghost::after { content: '↓'; font-size: 16px; }
+
+  /* Hero stats */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 28px 32px;
+    transition: border-color 0.3s;
+  }
+  .stat-card:hover { border-color: rgba(242,101,34,0.3); }
+  .stat-card:first-child {
+    grid-column: span 2;
+    background: rgba(242,101,34,0.07);
+    border-color: rgba(242,101,34,0.2);
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+  .stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-desc { font-size: 14px; color: var(--gray-light); }
+
+  /* ── SOBRE ── */
+  #sobre {
+    padding: 120px 0;
+    background: var(--dark2);
+  }
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .section-title span { color: var(--orange); }
+  .section-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--gray-light);
+    margin-bottom: 16px;
+  }
+  .sobre-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .sobre-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 24px 28px;
+  }
+  .sobre-card.full { grid-column: span 2; }
+  .sobre-card .num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .sobre-card .lbl {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  .sobre-card .txt { font-size: 13px; color: var(--gray-light); line-height: 1.6; }
+
+  /* ── ESCOPO ── */
+  #escopo {
+    padding: 120px 0;
+  }
+  .escopo-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 60px;
+  }
+  .escopo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .escopo-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 36px 32px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .escopo-item:hover {
+    border-color: rgba(242,101,34,0.25);
+    transform: translateY(-4px);
+  }
+  .escopo-item:last-child {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .item-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .item-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .item-text { font-size: 14px; color: var(--gray-light); line-height: 1.7; }
+
+  /* ── OPERAÇÃO ── */
+  #operacao {
+    padding: 120px 0;
+    background: var(--dark2);
+  }
+  .op-header { margin-bottom: 60px; }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .step {
+    background: var(--dark2);
+    padding: 40px 36px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .step:hover { background: var(--dark3); }
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--orange);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .step-text { font-size: 14px; color: var(--gray-light); line-height: 1.7; }
+
+  /* ── PREÇOS ── */
+  #precos {
+    padding: 120px 0;
+  }
+  .precos-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 60px;
+  }
+  .volume-list { display: grid; gap: 12px; }
+  .volume-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.3s;
+  }
+  .volume-item:last-child {
+    background: rgba(242,101,34,0.08);
+    border-color: rgba(242,101,34,0.3);
+  }
+  .volume-item:hover { border-color: rgba(242,101,34,0.25); }
+  .vol-info .vol-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .vol-info .vol-prices { font-size: 13px; color: var(--gray-light); }
+  .vol-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+  }
+  .volume-item:last-child .vol-badge { color: var(--orange); }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .plan-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 48px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .plan-card:hover { transform: translateY(-6px); }
+  .plan-card.featured {
+    border-color: var(--orange);
+    background: rgba(242,101,34,0.07);
+  }
+
+  .plan-name {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+  .plan-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+  }
+  .plan-price sup {
+    font-size: 26px;
+    font-weight: 600;
+    vertical-align: top;
+    margin-top: 14px;
+    display: inline-block;
+  }
+  .plan-period {
+    font-size: 14px;
+    color: var(--gray);
+    margin-top: 8px;
+    margin-bottom: 32px;
+  }
+  .plan-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin-bottom: 28px;
+  }
+  .plan-list { list-style: none; display: grid; gap: 10px; }
+  .plan-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--gray-light);
+  }
+  .plan-list li::before {
+    content: '✓';
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .plan-note {
+    font-size: 12px;
+    color: var(--gray);
+    font-style: italic;
+    margin-top: 20px;
+  }
+
+  /* ── CONDIÇÕES ── */
+  #condicoes {
+    padding: 120px 0;
+    background: var(--dark2);
+  }
+  .cond-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .cond-list { display: grid; gap: 14px; margin-top: 0; }
+  .cond-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 16px 16px 0;
+    padding: 24px 28px;
+  }
+  .cond-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  .cond-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .cond-text { font-size: 14px; color: var(--gray-light); line-height: 1.65; }
+
+  /* ── FOOTER / CTA FINAL ── */
+  #contato {
+    padding: 140px 0 80px;
+    background: var(--light-bg);
+  }
+  .contato-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .contato-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .contato-title span { color: var(--orange); }
+  .contato-sub { font-size: 16px; color: #666; line-height: 1.75; }
+  .contato-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 52px 56px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.10);
+  }
+  .contato-card .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .contato-card .logo span { color: var(--orange); }
+  .contato-card .tagline {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 36px;
+  }
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .contact-item .ci-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .contact-item .ci-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .validity-bar {
+    margin-top: 32px;
+    padding: 14px 20px;
+    background: #F7F5F2;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .validity-bar::before {
+    content: '⏱';
+    font-size: 14px;
+  }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .container { padding: 0 24px; }
+    .hero-inner, .sobre-grid, .escopo-header,
+    .precos-header, .cond-grid, .contato-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .hero-stats .stat-card:first-child { grid-column: span 2; }
+    .escopo-grid { grid-template-columns: 1fr 1fr; }
+    .escopo-item:last-child { grid-column: span 2; display: block; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .plans-grid { grid-template-columns: 1fr; }
+    #hero { padding-top: 120px; }
+    .hero-title { font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>Agência</span> Ângelo</a>
+  <a class="nav-cta" href="#contato">Falar com a agência</a>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag reveal">Proposta Comercial</div>
+        <h1 class="hero-title reveal reveal-delay-1">
+          Gestão de<br><span>Mídias Sociais</span>
+        </h1>
+        <div class="hero-actions reveal reveal-delay-2">
+          <a class="btn-primary" href="#precos">Ver investimentos</a>
+          <a class="btn-ghost" href="#escopo">Ver o que está incluso</a>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SOBRE ══════════════════ -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div>
+        <div class="section-eyebrow reveal">Sobre Nós</div>
+        <h2 class="section-title reveal reveal-delay-1">A <span>Agência Ângelo</span></h2>
+        <p class="section-body reveal reveal-delay-2">
+          Somos uma agência de marketing digital focada em aumentar resultados de profissionais e empresas por meio de estratégias consistentes e bem executadas.
+        </p>
+        <p class="section-body reveal reveal-delay-3">
+          Com quase 5 anos de atuação no mercado, atendemos negócios em diferentes regiões do Brasil de forma estratégica, considerando o momento, os objetivos e a realidade de cada empresa.
+        </p>
+        <p class="section-body reveal reveal-delay-4">
+          A agência é liderada por Adson Ângelo, graduado em Gestão de Marketing, cursando MBA em Comunicação e Marketing pela USP — unindo teoria e prática na construção de soluções mais eficazes.
+        </p>
+      </div>
+      <div class="sobre-cards reveal reveal-delay-1">
+        <div class="sobre-card">
+          <div class="lbl">Experiência</div>
+          <div class="num">5 anos</div>
+          <div class="txt">de atuação no mercado digital</div>
+        </div>
+        <div class="sobre-card">
+          <div class="lbl">Hotelaria</div>
+          <div class="num">2+</div>
+          <div class="txt">anos atendendo o segmento</div>
+        </div>
+        <div class="sobre-card full">
+          <div class="lbl">Fundador & Consultor Estratégico</div>
+          <div class="num" style="font-size:24px; margin-bottom:6px;">Adson Ângelo</div>
+          <div class="txt">MBA USP em Comunicação & Marketing · Graduação em Gestão de Marketing · Responsável pelo planejamento estratégico e acompanhamento direto de todos os clientes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ESCOPO ══════════════════ -->
+<section id="escopo">
+  <div class="container">
+    <div class="escopo-header">
+      <div>
+        <div class="section-eyebrow reveal">Escopo do Serviço</div>
+        <h2 class="section-title reveal reveal-delay-1">O que está <span>incluso</span><br>em cada cliente</h2>
+      </div>
+      <p class="section-body reveal reveal-delay-2" style="align-self:end;">
+        Um serviço completo de gestão de mídias sociais, entregue de forma estruturada — pronto para ser repassado ao cliente final com a sua marca.
+      </p>
+    </div>
+    <div class="escopo-grid">
+      <div class="escopo-item reveal">
+        <div class="item-num">01</div>
+        <div class="item-title">Planejamento Estratégico</div>
+        <div class="item-text">Pautas mensais alinhadas ao posicionamento, sazonalidade e objetivos de cada cliente.</div>
+      </div>
+      <div class="escopo-item reveal reveal-delay-1">
+        <div class="item-num">02</div>
+        <div class="item-title">Produção das Artes</div>
+        <div class="item-text">Design das peças visuais para feed e stories, alinhado à identidade de cada marca.</div>
+      </div>
+      <div class="escopo-item reveal reveal-delay-2">
+        <div class="item-num">03</div>
+        <div class="item-title">Copywriting & Legendas</div>
+        <div class="item-text">Textos estratégicos com CTA definido e linguagem adequada ao público-alvo.</div>
+      </div>
+      <div class="escopo-item reveal reveal-delay-3">
+        <div class="item-num">04</div>
+        <div class="item-title">Agendamento & Publicação</div>
+        <div class="item-text">Calendário editorial e publicação nos canais definidos — Instagram, Facebook e LinkedIn.</div>
+      </div>
+      <div class="escopo-item reveal reveal-delay-4">
+        <div class="item-num">05</div>
+        <div class="item-title">Relatório Mensal</div>
+        <div class="item-text">Análise de métricas e desempenho entregue mensalmente, pronto para repasse ao cliente final.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ OPERAÇÃO ══════════════════ -->
+<section id="operacao">
+  <div class="container">
+    <div class="op-header">
+      <div class="section-eyebrow reveal">Fluxo de Trabalho</div>
+      <h2 class="section-title reveal reveal-delay-1">Como funciona <span>a operação</span></h2>
+      <p class="section-body reveal reveal-delay-2" style="max-width:600px;">Processo estruturado para garantir entregas consistentes sem gerar dependência de contato direto com o cliente final.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Alinhamento inicial</div>
+        <div class="step-text">Identidade visual, posicionamento, público e objetivos de cada hotel. Feito uma única vez na onboarding.</div>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-title">Repositório de fotos</div>
+        <div class="step-text">Material bruto enviado via drive. A Agência Ângelo assume a curadoria e uso estratégico do conteúdo.</div>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-title">Produção e aprovação</div>
+        <div class="step-text">Desenvolvemos o conteúdo do mês e enviamos para aprovação. A interface com o cliente final fica a cargo da sua equipe.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-title">Publicação</div>
+        <div class="step-text">Agendamento e publicação nos canais conforme o calendário editorial aprovado.</div>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">05</div>
+        <div class="step-title">Relatório mensal</div>
+        <div class="step-text">Relatório de métricas entregue ao fim de cada mês, pronto para ser repassado ao cliente.</div>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">06</div>
+        <div class="step-title">Demandas extras</div>
+        <div class="step-text">Pedidos específicos (eventos, sazonalidade) tratados como demandas avulsas, orçadas individualmente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PREÇOS ══════════════════ -->
+<section id="precos">
+  <div class="container">
+    <div class="precos-header">
+      <div>
+        <div class="section-eyebrow reveal">Investimentos</div>
+        <h2 class="section-title reveal reveal-delay-1">Valores <span>por cliente</span></h2>
+        <p class="section-body reveal reveal-delay-2">Precificação por cliente ativo, considerando escopo completo de gestão mensal.</p>
+      </div>
+      <div>
+        <div class="section-eyebrow reveal" style="margin-bottom:16px;">Condições especiais por volume</div>
+        <div class="volume-list">
+          <div class="volume-item reveal reveal-delay-1">
+            <div class="vol-info">
+              <div class="vol-label">5 clientes</div>
+              <div class="vol-prices">Plano 01: R$ 712 · Plano 02: R$ 807</div>
+            </div>
+            <div class="vol-badge">5% off</div>
+          </div>
+          <div class="volume-item reveal reveal-delay-2">
+            <div class="vol-info">
+              <div class="vol-label">10 clientes</div>
+              <div class="vol-prices">Plano 01: R$ 675 · Plano 02: R$ 765</div>
+            </div>
+            <div class="vol-badge">10% off</div>
+          </div>
+          <div class="volume-item reveal reveal-delay-3">
+            <div class="vol-info">
+              <div class="vol-label">15 clientes</div>
+              <div class="vol-prices">Plano 01: R$ 637 · Plano 02: R$ 722</div>
+            </div>
+            <div class="vol-badge">15% off</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card reveal">
+        <div class="plan-name">Plano 01</div>
+        <div class="plan-price"><sup>R$</sup>750</div>
+        <div class="plan-period">por cliente / mês</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-list">
+          <li>10 publicações por mês</li>
+          <li>Instagram + Facebook</li>
+          <li>Planejamento estratégico</li>
+          <li>Design das artes</li>
+          <li>Copywriting e legendas</li>
+          <li>Agendamento e publicação</li>
+          <li>Relatório mensal</li>
+        </ul>
+      </div>
+      <div class="plan-card featured reveal reveal-delay-1">
+        <div class="plan-name">Plano 02</div>
+        <div class="plan-price"><sup>R$</sup>850</div>
+        <div class="plan-period">por cliente / mês</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-list">
+          <li>12 publicações por mês</li>
+          <li>Instagram + Facebook + LinkedIn*</li>
+          <li>Planejamento estratégico</li>
+          <li>Design das artes</li>
+          <li>Copywriting e legendas</li>
+          <li>Agendamento e publicação</li>
+          <li>Relatório mensal</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CONDIÇÕES ══════════════════ -->
+<section id="condicoes">
+  <div class="container">
+    <div class="cond-grid">
+      <div>
+        <div class="section-eyebrow reveal">Condições Gerais</div>
+        <h2 class="section-title reveal reveal-delay-1">Como <span>funciona</span><br>a contratação</h2>
+        <p class="section-body reveal reveal-delay-2">Estrutura pensada para uma parceria fluida, com clareza de responsabilidades e processos bem definidos.</p>
+      </div>
+      <div class="cond-list">
+        <div class="cond-item reveal">
+          <div class="cond-label">Início</div>
+          <div class="cond-title">Onboarding por cliente</div>
+          <div class="cond-text">A cada novo cliente incorporado, realizamos um alinhamento inicial para mapear identidade, objetivos e estilo de comunicação.</div>
+        </div>
+        <div class="cond-item reveal reveal-delay-1">
+          <div class="cond-label">Responsabilidades</div>
+          <div class="cond-title">Interface com cliente final</div>
+          <div class="cond-text">O relacionamento com os clientes finais (hotéis) é gerenciado pela sua equipe. A Agência Ângelo opera como parceiro de produção e estratégia.</div>
+        </div>
+        <div class="cond-item reveal reveal-delay-2">
+          <div class="cond-label">Material</div>
+          <div class="cond-title">Repositório de fotos</div>
+          <div class="cond-text">O material bruto é fornecido via drive. Produção de foto e vídeo pode ser orçada separadamente, por demanda.</div>
+        </div>
+        <div class="cond-item reveal reveal-delay-3">
+          <div class="cond-label">Pagamento</div>
+          <div class="cond-title">Pagamento mensal ou quinzenal</div>
+          <div class="cond-text">O pagamento é realizado no início do serviço, no dia da reunião de onboarding, via pix ou boleto bancário.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CONTATO ══════════════════ -->
+<section id="contato">
+  <div class="container">
+    <div class="contato-inner">
+      <div>
+        <div class="section-eyebrow reveal" style="color:var(--orange);">Próximos passos</div>
+        <h2 class="contato-title reveal reveal-delay-1">
+          Pronto para escalar a gestão de mídias dos seus <span>clientes?</span>
+        </h2>
+        <p class="contato-sub reveal reveal-delay-2">
+          Entre em contato e vamos estruturar essa parceria juntos.
+        </p>
+      </div>
+      <div class="contato-card reveal reveal-delay-1">
+        <div class="logo"><span>Agência</span> Ângelo</div>
+        <div class="tagline">Marketing Estratégico & Execução</div>
+        <div class="contact-row">
+          <div class="contact-item">
+            <div class="ci-label">WhatsApp</div>
+            <div class="ci-value">84 9123-6489</div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-label">Instagram</div>
+            <div class="ci-value">@aagenciaangelo</div>
+          </div>
+        </div>
+        <div class="validity-bar">Proposta válida por 5 dias a partir do envio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
